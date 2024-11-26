@@ -39,16 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['letra'])) {
 
 // Comprobar si se ha ganado o perdido
 if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
-    echo "¡Enhorabuena! Has ganado :) La palabra era: " . $_SESSION['palabra'] . "<br>";
+    $palabra = $_SESSION['palabra'];
     session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header("Location: ganado.php?palabra=$palabra");
     exit();
 } elseif ($_SESSION['vidas'] <= 0) {
-    echo "Lo siento, has perdido :( La palabra era: " . $_SESSION['palabra'] . "<br>";
+    $palabra = $_SESSION['palabra'];
     session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header("Location: perdido.php?palabra=$palabra");
     exit();
-}//jnkedf
+}
 ?>
 
 <!DOCTYPE html>
